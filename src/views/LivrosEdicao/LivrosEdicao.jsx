@@ -37,6 +37,7 @@ const LivrosEdicao = () => {
 
   useEffect(() => {
     getLivro()    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])  
 
   return (
@@ -68,9 +69,14 @@ const LivrosEdicao = () => {
               <input type="text"  required onChange={(event)=>{ setLivro({...livro, editora: event.target.value})}} value={livro.editora || ''}></input>
             </div> 
             <div className='form-group'>
-              <button onClick={()=>{
-              editLivro()
-            }}>Atualizar Livro</button>  
+              <button
+                onClick={(event)=>{
+                  event.preventDefault();
+                  editLivro();
+                }}
+            >
+              Atualizar Livro
+              </button>  
             </div>                   
           </form>
           </div>        
